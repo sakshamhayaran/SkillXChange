@@ -3,8 +3,8 @@ import pages_image from "../assets/pages_image.png";
 import Select from 'react-select';
 import { useState } from "react";
 import { auth, db } from "../Firebase/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 function Register_Tutor() {
 
@@ -44,11 +44,12 @@ function Register_Tutor() {
     const registerTutor = async (e) => {
         e.preventDefault();
         try {
+            let uid;
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-
-            await setDoc(doc(db, "learners", user.uid), {
-                uid: user.uid,
+            uid = userCredential.user.uid;
+            console.log("Tutor Registered:", uid);
+            await setDoc(doc(db, "tutors", uid), {
+                uid,
                 fullName,
                 email,
                 address,
@@ -56,14 +57,43 @@ function Register_Tutor() {
                 bio,
                 createdAt: new Date()
             });
-            console.log("Learner Registered :", user.uid);
+            console.log("Tutor data stored in Firestore:", uid);
             navigate("/login_tutor");
+
+        } catch (error) {
+            if (error.code === "auth/email-already-in-use") {
+                console.log("Email already exists, adding tutor role...");
+                try {
+                    const existingUser = await signInWithEmailAndPassword(auth, email, password);
+                    const uid = existingUser.user.uid;
+                    const tutorRef = doc(db, "tutors", uid);
+                    const tutorSnap = await getDoc(tutorRef);
+                    if (tutorSnap.exists()) {
+                        alert("⚠️ You have already registered as a tutor");
+                        return;
+                    }
+                    await setDoc(doc(db, "tutors", uid), {
+                        uid,
+                        fullName,
+                        email,
+                        address,
+                        skills,
+                        bio,
+                        createdAt: new Date()
+                    });
+                    console.log("Tutor role added for existing user:", uid);
+                    navigate("/login_tutor");
+                } catch (signInError) {
+                    console.error("Error signing in existing user:", signInError.message);
+                    alert("⚠️ Incorrect password for existing account. Please use the same password as the Learner login.");
+                }
+            } else {
+                console.error("Error registering tutor:", error.message);
+                alert("❌ " + (error.message || "Error Registering Your Account"));
+            }
         }
-        catch (error) {
-            console.error("Error registering tutor : ", error.message);
-            alert("!! Error Registering Your Account !!");
-        }
-    }
+    };
+
 
     return (
         <div className="min-h-screen w-screen flex flex-col md:flex-row items-center md:gap-0 gap-10 justify-center bg-blue-100">

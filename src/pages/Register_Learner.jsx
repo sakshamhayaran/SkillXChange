@@ -3,8 +3,8 @@ import pages_image from "../assets/pages_image.png";
 import Select from 'react-select';
 import { useState } from "react";
 import { auth, db } from "../Firebase/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 function Register_Learner() {
 
@@ -44,11 +44,12 @@ function Register_Learner() {
   const registerLearner = async (e) => {
     e.preventDefault();
     try {
+      let uid;
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      await setDoc(doc(db, "learners", user.uid), {
-        uid: user.uid,
+      uid = userCredential.user.uid;
+      console.log("Learner Registered:", uid);
+      await setDoc(doc(db, "learners", uid), {
+        uid,
         fullName,
         email,
         address,
@@ -56,14 +57,43 @@ function Register_Learner() {
         bio,
         createdAt: new Date()
       });
-      console.log("Learner Registered :", user.uid);
+      console.log("Learner data stored in Firestore:", uid);
       navigate("/login_learner");
+
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        console.log("Email already exists, adding learner role...");
+        try {
+          const existingUser = await signInWithEmailAndPassword(auth, email, password);
+          const uid = existingUser.user.uid;
+          const learnerRef = doc(db, "learners", uid);
+          const learnerSnap = await getDoc(learnerRef);
+          if (learnerSnap.exists()) {
+            alert("⚠️ You are already registered as a learner.");
+            return;
+          }
+          await setDoc(doc(db, "learners", uid), {
+            uid,
+            fullName,
+            email,
+            address,
+            skills,
+            bio,
+            createdAt: new Date()
+          });
+          console.log("Learner role added for existing user:", uid);
+          navigate("/login_learner");
+        } catch (signInError) {
+          console.error("Error signing in existing user:", signInError.message);
+          alert("⚠️ Incorrect password for existing account. Please use the same password as the Tutor login.");
+        }
+      } else {
+        console.error("Error registering learner:", error.message);
+        alert("❌ " + (error.message || "Error Registering Your Account"));
+      }
     }
-    catch (error) {
-      console.error("Error registering learner:", error.message);
-      alert("!! Error Registering Your Account !!");
-    }
-  }
+  };
+
 
   return (
     <div className="min-h-screen w-screen flex flex-col md:flex-row items-center md:gap-0 gap-10 justify-center bg-blue-100">
