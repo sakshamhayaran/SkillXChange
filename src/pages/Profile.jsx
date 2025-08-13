@@ -1,0 +1,106 @@
+import { useEffect, useState } from "react";
+import { auth, db } from "../Firebase/firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+
+function Profile() {
+
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
+    const [formData, setFormData] = useState({});
+
+    useEffect(() => {
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const role = localStorage.getItem("role");
+                const docRef = doc(db, role, user.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    setUserData(docSnap.data());
+                    setFormData(docSnap.data());
+                }
+            }
+            setLoading(false);
+        })
+    }, []);
+
+    if (loading) { return <p className="text-center p-5">Loading....</p> }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+
+    const handleSave = async () => {
+        const user = auth.currentUser;
+        if (!user) return;
+
+        const role = localStorage.getItem("role");
+        const docRef = doc(db, role, user.uid);
+        await updateDoc(docRef, formData);
+
+        setUserData(formData);
+        setIsEditing(false);
+    };
+
+    return (
+        <div className="w-screen flex flex-col md:flex-row items-center">
+            <div className="w-full md:w-[1/2] flex justify-center p-10">
+                <div className="rounded-full bg-indigo-950 text-white font-bold text-7xl p-10 md:p-20">
+                    {userData.fullName.charAt(0).toUpperCase()}
+                </div>
+            </div>
+            <div className="w-full md:w-[1/2] flex flex-col gap-5 p-10">
+                <div className="flex justify-evenly items-center">
+                    <h1 className="md:text-4xl text-2xl font-bold text-center">Your Profile !</h1>
+                    {!isEditing && (
+                        <button className="bg-blue-500 text-white px-4 py-2 rounded"
+                            onClick={() => setIsEditing(true)}>Edit</button>
+                    )}
+                </div>
+                <p className="text-md"><span className="font-bold">Full Name : </span>
+                    {isEditing ?
+                        (
+                            <input type="text" name="fullName" value={formData.fullName || ""} onChange={handleChange} className="border p-1 rounded" />
+                        ) : (userData.fullName)}</p>
+                <p className="text-md"><span className="font-bold">Email : </span>
+                    {isEditing ?
+                        (
+                            <input type="text" name="email" value={formData.email || ""} onChange={handleChange} className="border p-1 rounded" />
+                        ) : (userData.email)}</p>
+                <p className="text-md"><span className="font-bold">Address : </span>
+                    {isEditing ?
+                        (
+                            <input type="text" name="address" value={formData.address || ""} onChange={handleChange} className="border p-1 rounded" />
+                        ) : (userData.address)}</p>
+                <p className="text-md"><span className="font-bold">Skills Interested In : </span>
+                    {isEditing ?
+                        (
+                            <input type="text" name="skills"
+                                value={Array.isArray(formData.skills) ? formData.skills.join(" , ") : formData.skills || ""}
+                                onChange={(e) => setFormData((prev) => ({ ...prev, skills: e.target.value.split(",").map((skill) => skill.trim()) }))}
+                                className="border w-full p-1 rounded"
+                            />
+                        ) : (Array.isArray(userData.skills) ? userData.skills.join(", ") : userData.skills)} </p>
+                <p className="text-md"><span className="font-bold">Short Bio : </span>
+                    {isEditing ?
+                        (
+                            <textarea name="bio" value={formData.bio || ""} onChange={handleChange} className="border p-1 rounded w-full" />
+                        ) : (userData.bio)}</p>
+
+                {isEditing && (
+                    <div className="flex justify-center items-center mt-4 gap-4">
+                        <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={handleSave}> Save </button>
+                        <button className="bg-gray-400 text-white px-4 py-2 rounded" onClick={
+                            () => { setFormData(userData); setIsEditing(false); }
+                        }> Cancel </button>
+                    </div>
+                )}
+            </div>
+        </div>
+    )
+}
+
+export default Profile

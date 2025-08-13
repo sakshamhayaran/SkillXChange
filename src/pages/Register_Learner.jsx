@@ -9,27 +9,27 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 function Register_Learner() {
 
   const skillOptions = [
-    { value: 'acting', label: 'Acting' },
-    { value: 'app development', label: 'App Development' },
-    { value: 'coding', label: 'Coding' },
-    { value: 'cooking', label: 'Cooking' },
-    { value: 'dance', label: 'Dance' },
-    { value: 'drawing', label: 'Drawing' },
-    { value: 'fitness training', label: 'Fitness Training' },
-    { value: 'game development', label: 'Game Development' },
-    { value: 'graphic design', label: 'Graphic Design' },
-    { value: 'martial arts', label: 'Martial Arts' },
-    { value: 'nutrition & diet', label: 'Nutrition & Diet' },
-    { value: 'painting', label: 'Painting' },
-    { value: 'photography', label: 'Photography' },
-    { value: 'public-speaking', label: 'Public Speaking' },
-    { value: 'self defense', label: 'Self Defense' },
-    { value: 'singing', label: 'Singing' },
-    { value: 'ui/ux design', label: 'UI/UX Design' },
-    { value: 'video Editing', label: 'Video Editing' },
-    { value: 'web development', label: 'Web Development' },
-    { value: 'yoga', label: 'Yoga' },
-    { value: 'zumba', label: 'Zumba' }
+    { value: 'Acting', label: 'Acting' },
+    { value: 'App Development', label: 'App Development' },
+    { value: 'Coding', label: 'Coding' },
+    { value: 'Cooking', label: 'Cooking' },
+    { value: 'Dance', label: 'Dance' },
+    { value: 'Drawing', label: 'Drawing' },
+    { value: 'Fitness Training', label: 'Fitness Training' },
+    { value: 'Game Development', label: 'Game Development' },
+    { value: 'Graphic Design', label: 'Graphic Design' },
+    { value: 'Martial Arts', label: 'Martial Arts' },
+    { value: 'Nutrition & Diet', label: 'Nutrition & Diet' },
+    { value: 'Painting', label: 'Painting' },
+    { value: 'Photography', label: 'Photography' },
+    { value: 'Public Speaking', label: 'Public Speaking' },
+    { value: 'Self Defense', label: 'Self Defense' },
+    { value: 'Singing', label: 'Singing' },
+    { value: 'UI/UX design', label: 'UI/UX Design' },
+    { value: 'Video Editing', label: 'Video Editing' },
+    { value: 'Web Development', label: 'Web Development' },
+    { value: 'Yoga', label: 'Yoga' },
+    { value: 'Zumba', label: 'Zumba' }
   ];
 
   const [fullName, setFullName] = useState('');

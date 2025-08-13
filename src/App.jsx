@@ -7,10 +7,10 @@ import Contact from "./pages/Contact";
 
 
 export default function App() {
-  
+
   return (
     <div className="">
-      
+
       <Navbar />
       <Hero />
       <Features />
@@ -18,6 +18,6 @@ export default function App() {
       <Testimonials />
       <Contact />
 
-    </div>
+    </div >
   )
 }

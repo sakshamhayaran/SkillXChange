@@ -7,6 +7,9 @@ import Register_Learner from "./pages/Register_Learner.jsx";
 import Register_Tutor from "./pages/Register_Tutor.jsx";
 import Login_Learner from "./pages/Login_Learner.jsx";
 import Login_Tutor from "./pages/Login_Tutor.jsx";
+import Dashboard from './pages/Dashboard.jsx'
+import Profile from './pages/Profile.jsx'
+import Home from './pages/Home.jsx'
 
 
 const router = createBrowserRouter([
@@ -29,6 +32,20 @@ const router = createBrowserRouter([
   {
     path: "/login_tutor",
     element: <Login_Tutor />
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "home",
+        element: <Home />
+      },
+      {
+        path: "profile",
+        element: <Profile />
+      },
+    ]
   }
 ])
 

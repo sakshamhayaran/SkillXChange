@@ -1,20 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import pages_image from "../assets/pages_image.png";
 import { useState } from "react";
-import { auth } from "../Firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../Firebase/firebase";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 function Login_Tutor() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   const loginTutor = async (e) => {
     e.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log("Logged in : ", user.uid);
+      const uid = userCredential.user.uid;
+
+      const tutorRef = doc(db, "tutors", uid);
+      const tutorSnap = await getDoc(tutorRef);
+      if (!tutorSnap.exists()) {
+        alert("⚠️ You are not registered as a Tutor.");
+        await signOut(auth);
+        return;
+      }
+      localStorage.setItem("role", "tutors");
+      console.log("Logged in:", uid);
+      navigate("/dashboard");
     }
     catch (error) {
       console.error("Error logging tutor:", error.message);

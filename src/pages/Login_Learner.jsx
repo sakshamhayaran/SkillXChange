@@ -1,20 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import pages_image from "../assets/pages_image.png";
 import { useState } from "react";
-import { auth } from "../Firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../Firebase/firebase";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 function Login_Learner() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   const loginLearner = async (e) => {
     e.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log("Logged in : ", user.uid);
+      const uid = userCredential.user.uid;
+
+      const learnerRef = doc(db, "learners", uid);
+      const learnerSnap = await getDoc(learnerRef);
+      if (!learnerSnap.exists()) {
+        alert("⚠️ You are not registered as a Learner.");
+        await signOut(auth);
+        return;
+      }
+      localStorage.setItem("role", "learners");
+      console.log("Logged in:", uid);
+      navigate("/dashboard");
     }
     catch (error) {
       console.error("Error logging learner:", error.message);
