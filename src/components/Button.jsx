@@ -1,8 +1,7 @@
-import React from 'react'
 
-function Button({text, bgcolor, textcolor, classes=''}) {
+function Button({onClick, text, bgcolor, textcolor, classes=''}) {
   return (
-    <button className={`px-6 py-3 rounded-full font-medium ${textcolor} ${bgcolor} ${classes}`}>
+    <button onClick={onClick} className={`px-6 py-3 rounded-full font-medium ${textcolor} ${bgcolor} ${classes}`}>
         {text}
     </button>
   )

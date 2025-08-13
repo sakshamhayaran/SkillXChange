@@ -10,6 +10,7 @@ import Login_Tutor from "./pages/Login_Tutor.jsx";
 import Dashboard from './pages/Dashboard.jsx'
 import Profile from './pages/Profile.jsx'
 import Home from './pages/Home.jsx'
+import UserProfile from './pages/UserProfile.jsx'
 
 
 const router = createBrowserRouter([
@@ -38,12 +39,16 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "home",
+        index: true,
         element: <Home />
       },
       {
         path: "profile",
         element: <Profile />
+      },
+      {
+        path: "users/:id",
+        element: <UserProfile />
       },
     ]
   }

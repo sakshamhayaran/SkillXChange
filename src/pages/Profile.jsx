@@ -48,7 +48,7 @@ function Profile() {
     return (
         <div className="w-screen flex flex-col md:flex-row items-center">
             <div className="w-full md:w-[1/2] flex justify-center p-10">
-                <div className="rounded-full bg-indigo-950 text-white font-bold text-7xl p-10 md:p-20">
+                <div className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full bg-indigo-950 text-white font-bold text-7xl flex justify-center items-center">
                     {userData.fullName.charAt(0).toUpperCase()}
                 </div>
             </div>
