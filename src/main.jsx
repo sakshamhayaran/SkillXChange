@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       },
     ]
   }
-]
+],
 {
     basename: '/SkillXChange'
   }
