@@ -34,7 +34,7 @@ function UserProfile() {
             </div>
             <div className="w-full md:w-[1/2] flex flex-col gap-5 p-10">
                 <div className="flex justify-evenly items-center">
-                    <h1 className="md:text-4xl text-2xl font-bold text-center">Your Profile !</h1>
+                    <h1 className="md:text-4xl text-2xl font-bold text-center">User Profile !</h1>
                 </div>
                 <p className="text-md"><span className="font-bold">Full Name : </span>{userData.fullName}</p>
                 <p className="text-md"><span className="font-bold">Email : </span>{userData.email}</p>
