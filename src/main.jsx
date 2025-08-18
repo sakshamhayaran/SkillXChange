@@ -52,11 +52,7 @@ const router = createBrowserRouter([
       },
     ]
   }
-],
-{
-    basename: '/SkillXChange'
-  }
-)
+])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
