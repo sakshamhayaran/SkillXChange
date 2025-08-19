@@ -2,7 +2,7 @@
   "name": "skillxchange",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://sakshamhayaran.github.io/",
+  "homepage": "https://sakshamhayaran.github.io/SkillXChange",
   "type": "module",
   "scripts": {
     "dev": "vite",
