@@ -1,12 +1,15 @@
-# React + Vite
+# SkillXChange
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project involved:
 
-Currently, two official plugins are available:
+• Developing a skill-sharing website that helps users connect with people in their local neighbourhood to learn as well as teach various skills.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+• Allowing users to register as a tutor as well as learner, with the flexibility to explore and connect with people nearby.
 
-## Expanding the ESLint configuration
+• Providing a dashboard where users can view their profile, edit details, browse a list of tutors or learners, and access other user profiles.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+• Enabling role-based authentication and secure data storage using Firebase Authentication and Firestore.
+
+• Built using **React**, **Tailwind CSS**, and **Firebase**, ensuring a modern, responsive UI and smooth user experience across devices.
+
+Live Preview : https://sakshamhayaran.github.io/SkillXChange
