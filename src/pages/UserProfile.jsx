@@ -41,7 +41,6 @@ function UserProfile() {
                 status: "pending",
                 timestamp: serverTimestamp(),
             });
-            console.log(requestObj)
             alert("✅ Request sent successfully !");
         }
         catch (error) {
@@ -63,7 +62,7 @@ function UserProfile() {
                 <div className="flex justify-evenly items-center">
                     <h1 className="md:text-4xl text-2xl font-bold text-center">User Profile !</h1>
                     {role === 'learners' &&
-                        (<button onClick={sendRequest} className="bg-blue-500 text-white px-4 py-2 rounded">Request</button>)}
+                        (<button onClick={sendRequest} className="bg-blue-500 text-white px-4 py-2 rounded hover:opacity-70">Request</button>)}
                 </div>
                 <p className="text-md"><span className="font-bold">Full Name : </span>{userData.fullName}</p>
                 <p className="text-md"><span className="font-bold">Email : </span>{userData.email}</p>

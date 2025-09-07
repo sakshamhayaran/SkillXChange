@@ -36,7 +36,7 @@ export default function Dashboard() {
           onClick={()=>setIsMenuOpen(prev => !prev)}/>
         <ul className="hidden md:flex gap-5 text-white justify-center items-center">
           <Link to="/dashboard" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Home</Link>
-          <Link to="" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Requests</Link>
+          <Link to="/dashboard/requests" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Requests</Link>
           <Link to="" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Notifications</Link>
           <Link to="/dashboard/profile" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Profile</Link>
         </ul>
@@ -49,7 +49,7 @@ export default function Dashboard() {
       {isMenuOpen ? <div className="w-full flex text-white shadow-md md:hidden p-6">
         <ul className="w-full flex flex-col gap-5 justify-center items-center transition-all duration-300 ease-in-out">
           <Link to="/dashboard" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Home</Link>
-          <Link to="" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Requests</Link>
+          <Link to="/dashboard/requests" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Requests</Link>
           <Link to="" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Notifications</Link>
           <Link to="/dashboard/profile" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Profile</Link>
         </ul>

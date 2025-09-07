@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard.jsx'
 import Profile from './pages/Profile.jsx'
 import Home from './pages/Home.jsx'
 import UserProfile from './pages/UserProfile.jsx'
+import Requests from './pages/Requests.jsx'
 
 
 const router = createBrowserRouter(
@@ -42,6 +43,10 @@ const router = createBrowserRouter(
         {
           index: true,
           element: <Home />
+        },
+        {
+          path: "requests",
+          element: <Requests />
         },
         {
           path: "profile",
