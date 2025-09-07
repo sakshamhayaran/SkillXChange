@@ -91,7 +91,7 @@ function Requests() {
                 {loading ? (<p>Loading...</p>) :
                     requests.length === 0 ? (<p>No requests sent yet.</p>) :
                         (
-                            <div className="flex flex-col gap-4">
+                            <div className="text-xs md:text-base flex flex-col gap-4">
                                 {requests.map((req) => (
                                     <div key={req.id} className="p-4 border rounded gap-2 shadow bg-white flex items-center justify-between">
                                         <div className="flex flex-col">
@@ -127,7 +127,7 @@ function Requests() {
                 {loading ? (<p>Loading...</p>) :
                     requests.length === 0 ? (<p>No requests yet.</p>) :
                         (
-                            <div className="flex flex-col gap-4">
+                            <div className="text-xs md:text-base flex flex-col gap-4">
                                 {requests.map((req) => (
                                     <div key={req.id} className="p-4 border rounded gap-2 shadow bg-white flex items-center justify-between">
                                         <div className="flex flex-col">
