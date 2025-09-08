@@ -62,7 +62,7 @@ function UserProfile() {
                 <div className="flex justify-evenly items-center">
                     <h1 className="md:text-4xl text-2xl font-bold text-center">User Profile !</h1>
                     {role === 'learners' &&
-                        (<button onClick={sendRequest} className="bg-blue-500 text-white px-4 py-2 rounded hover:opacity-70">Request</button>)}
+                        (<button onClick={sendRequest} className="inline-block rounded bg-blue-600 px-6 md:px-10 py-2 font-medium text-white shadow-[0_4px_9px_-4px_#2563eb] transition duration-150 ease-in-out hover:bg-blue-400 hover:shadow-[0_8px_9px_-4px_rgba(37,99,235,0.3),0_4px_18px_0_rgba(37,99,235,0.2)]">Request</button>)}
                 </div>
                 <p className="text-md"><span className="font-bold">Full Name : </span>{userData.fullName}</p>
                 <p className="text-md"><span className="font-bold">Email : </span>{userData.email}</p>

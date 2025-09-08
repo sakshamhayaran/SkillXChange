@@ -142,8 +142,8 @@ function Requests() {
                                         
                                         {req.status === "pending" ?
                                         (<div className="flex flex-col md:flex-row justify-center align-center gap-2">
-                                            <button onClick={()=>handleRequest(req.id,"approved")} className="bg-red-500 text-xs md:text-sm text-white px-2 py-1 md:px-4 md:py-2 rounded hover:opacity-70">Accept</button>
-                                            <button onClick={()=>handleRequest(req.id,"rejected")} className="bg-green-500 text-xs md:text-sm text-white px-2 py-1 md:px-4 md:py-2 rounded hover:opacity-70">Reject</button>
+                                            <button onClick={()=>handleRequest(req.id,"approved")} className="inline-block rounded bg-red-600 px-2 py-1 md:px-4 md:py-2 text-xs md:text-sm font-medium text-white shadow-[0_4px_9px_-4px_#dc2626] transition duration-150 ease-in-out hover:bg-red-400 hover:shadow-[0_8px_9px_-4px_rgba(220,38,38,0.3),0_4px_18px_0_rgba(220,38,38,0.2)]">Accept</button>
+                                            <button onClick={()=>handleRequest(req.id,"rejected")} className="inline-block rounded bg-green-600 px-2 py-1 md:px-4 md:py-2 text-xs md:text-sm font-medium text-white shadow-[0_4px_9px_-4px_#16a34a] transition duration-150 ease-in-out hover:bg-green-400 hover:shadow-[0_8px_9px_-4px_rgba(22,163,74,0.3),0_4px_18px_0_rgba(22,163,74,0.2)]">Reject</button>
                                         </div>)
                                         :
                                         (<p>
