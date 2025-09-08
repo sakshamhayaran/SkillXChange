@@ -143,7 +143,7 @@ function Requests() {
                                         {req.status === "pending" ?
                                         (<div className="flex flex-col md:flex-row justify-center align-center gap-2">
                                             <button onClick={()=>handleRequest(req.id,"approved")} className="bg-red-500 text-xs md:text-sm text-white px-2 py-1 md:px-4 md:py-2 rounded hover:opacity-70">Accept</button>
-                                            <button onClick={()=>handleRequest(req.id,"rejected")} className="bg-blue-500 text-xs md:text-sm text-white px-2 py-1 md:px-4 md:py-2 rounded hover:opacity-70">Reject</button>
+                                            <button onClick={()=>handleRequest(req.id,"rejected")} className="bg-green-500 text-xs md:text-sm text-white px-2 py-1 md:px-4 md:py-2 rounded hover:opacity-70">Reject</button>
                                         </div>)
                                         :
                                         (<p>
