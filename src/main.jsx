@@ -12,6 +12,7 @@ import Profile from './pages/Profile.jsx'
 import Home from './pages/Home.jsx'
 import UserProfile from './pages/UserProfile.jsx'
 import Requests from './pages/Requests.jsx'
+import Messages from './pages/Messages.jsx'
 
 
 const router = createBrowserRouter(
@@ -47,6 +48,10 @@ const router = createBrowserRouter(
         {
           path: "requests",
           element: <Requests />
+        },
+        {
+          path: "messges",
+          element: <Messages />
         },
         {
           path: "profile",

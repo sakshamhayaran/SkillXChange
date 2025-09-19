@@ -37,7 +37,7 @@ export default function Dashboard() {
         <ul className="hidden md:flex gap-5 text-white justify-center items-center">
           <Link to="/dashboard" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Home</Link>
           <Link to="/dashboard/requests" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Requests</Link>
-          <Link to="" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Notifications</Link>
+          <Link to="/dashboard/messges" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Messages</Link>
           <Link to="/dashboard/profile" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300'>Profile</Link>
         </ul>
         </div>
@@ -50,7 +50,7 @@ export default function Dashboard() {
         <ul className="w-full flex flex-col gap-5 justify-center items-center transition-all duration-300 ease-in-out">
           <Link to="/dashboard" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Home</Link>
           <Link to="/dashboard/requests" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Requests</Link>
-          <Link to="" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Notifications</Link>
+          <Link to="/dashboard/messges" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Messages</Link>
           <Link to="/dashboard/profile" className='hover:scale-110 transition-transform duration-500 hover:text-gray-300' onClick={()=>setIsMenuOpen(prev => !prev)}>Profile</Link>
         </ul>
       </div> : null}
