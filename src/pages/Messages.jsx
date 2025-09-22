@@ -95,7 +95,7 @@ export default function Messages() {
 
     return (
         <div className="flex flex-col gap-10 p-5 md:p-10">
-            <h1 className="md:text-4xl text-2xl font-bold text-center">Sent Requests</h1>
+            <h1 className="md:text-4xl text-2xl font-bold text-center">Your Chats</h1>
 
             <div className="flex">
                 {/* Sidebar - Chats list */}
@@ -110,7 +110,7 @@ export default function Messages() {
                         return (
                             <div
                                 key={chat.id}
-                                className={`shadow-lg p-4 border-b cursor-pointer hover:bg-blue-100 ${selectedChat?.id === chat.id ? "bg-blue-200" : ""
+                                className={`shadow-lg p-2 border-b cursor-pointer hover:bg-blue-100 ${selectedChat?.id === chat.id ? "bg-blue-200" : ""
                                     }`}
                                 onClick={() => setSelectedChat(chat)}
                             >
@@ -166,7 +166,7 @@ export default function Messages() {
                             </div>
                         </>
                     ) : (
-                        <div className="flex-1 p-4 flex items-center justify-center text-gray-500">
+                        <div className="flex-1 px-2 py-20 text-sm md:text-base flex items-center justify-center text-gray-500">
                             Select a chat to start messaging
                         </div>
                     )}
