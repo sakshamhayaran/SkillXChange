@@ -110,7 +110,7 @@ export default function Messages() {
                         return (
                             <div
                                 key={chat.id}
-                                className={`p-1 md:p-3 border-b cursor-pointer hover:bg-blue-100 ${selectedChat?.id === chat.id ? "bg-blue-200" : ""
+                                className={`shadow-lg p-4 border-b cursor-pointer hover:bg-blue-100 ${selectedChat?.id === chat.id ? "bg-blue-200" : ""
                                     }`}
                                 onClick={() => setSelectedChat(chat)}
                             >
@@ -166,7 +166,7 @@ export default function Messages() {
                             </div>
                         </>
                     ) : (
-                        <div className="flex-1 flex items-center justify-center text-gray-500">
+                        <div className="flex-1 p-4 flex items-center justify-center text-gray-500">
                             Select a chat to start messaging
                         </div>
                     )}

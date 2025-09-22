@@ -11,7 +11,7 @@ function UserProfile() {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const targetCollection = role === "tutor" ? "learners" : "tutors";
+            const targetCollection = role === "tutors" ? "learners" : "tutors";
             const docRef = doc(db, targetCollection, id)
             const docSnap = await getDoc(docRef);
 
@@ -62,14 +62,14 @@ function UserProfile() {
                 <div className="flex justify-evenly items-center">
                     <h1 className="md:text-4xl text-2xl font-bold text-center">User Profile !</h1>
                     {role === 'learners' &&
-                        (<button onClick={sendRequest} className="inline-block rounded bg-blue-600 px-6 md:px-10 py-2 font-medium text-white shadow-[0_4px_9px_-4px_#2563eb] transition duration-150 ease-in-out hover:bg-blue-400 hover:shadow-[0_8px_9px_-4px_rgba(37,99,235,0.3),0_4px_18px_0_rgba(37,99,235,0.2)]">Request</button>)}
+                        (<button onClick={sendRequest} className="inline-block rounded bg-blue-600 px-6 md:px-10 py-1 font-medium text-white shadow-[0_4px_9px_-4px_#2563eb] transition duration-150 ease-in-out hover:bg-blue-400 hover:shadow-[0_8px_9px_-4px_rgba(37,99,235,0.3),0_4px_18px_0_rgba(37,99,235,0.2)]">Request</button>)}
                 </div>
-                <p className="text-md"><span className="font-bold">Full Name : </span>{userData.fullName}</p>
-                <p className="text-md"><span className="font-bold">Email : </span>{userData.email}</p>
-                <p className="text-md"><span className="font-bold">Address : </span>{userData.address}</p>
-                <p className="text-md"><span className="font-bold">Skills Interested In : </span>
+                <p className="text-sm md:text-base"><span className="font-bold">Full Name : </span>{userData.fullName}</p>
+                <p className="text-sm md:text-base"><span className="font-bold">Email : </span>{userData.email}</p>
+                <p className="text-sm md:text-base"><span className="font-bold">Address : </span>{userData.address}</p>
+                <p className="text-sm md:text-base"><span className="font-bold">Skills Interested In : </span>
                     {Array.isArray(userData.skills) ? userData.skills.join(", ") : userData.skills} </p>
-                <p className="text-md"><span className="font-bold">Short Bio : </span>{userData.bio}</p>
+                <p className="text-sm md:text-base"><span className="font-bold">Short Bio : </span>{userData.bio}</p>
             </div>
         </div>
     )

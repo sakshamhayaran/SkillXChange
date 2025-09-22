@@ -56,26 +56,26 @@ function Profile() {
                 <div className="flex justify-evenly items-center">
                     <h1 className="md:text-4xl text-2xl font-bold text-center">Your Profile !</h1>
                     {!isEditing && (
-                        <button className="inline-block rounded bg-blue-600 px-6 md:px-10 py-2 font-medium text-white shadow-[0_4px_9px_-4px_#2563eb] transition duration-150 ease-in-out hover:bg-blue-400 hover:shadow-[0_8px_9px_-4px_rgba(37,99,235,0.3),0_4px_18px_0_rgba(37,99,235,0.2)]"
+                        <button className="inline-block rounded bg-blue-600 px-6 md:px-10 py-1 font-medium text-white shadow-[0_4px_9px_-4px_#2563eb] transition duration-150 ease-in-out hover:bg-blue-400 hover:shadow-[0_8px_9px_-4px_rgba(37,99,235,0.3),0_4px_18px_0_rgba(37,99,235,0.2)]"
                             onClick={() => setIsEditing(true)}>Edit</button>
                     )}
                 </div>
-                <p className="text-md"><span className="font-bold">Full Name : </span>
+                <p className="text-sm md:text-base"><span className="font-bold">Full Name : </span>
                     {isEditing ?
                         (
                             <input type="text" name="fullName" value={formData.fullName || ""} onChange={handleChange} className="border p-1 rounded" />
                         ) : (userData.fullName)}</p>
-                <p className="text-md"><span className="font-bold">Email : </span>
+                <p className="text-sm md:text-base"><span className="font-bold">Email : </span>
                     {isEditing ?
                         (
                             <input type="text" name="email" value={formData.email || ""} onChange={handleChange} className="border p-1 rounded" />
                         ) : (userData.email)}</p>
-                <p className="text-md"><span className="font-bold">Address : </span>
+                <p className="text-sm md:text-base"><span className="font-bold">Address : </span>
                     {isEditing ?
                         (
                             <input type="text" name="address" value={formData.address || ""} onChange={handleChange} className="border p-1 rounded" />
                         ) : (userData.address)}</p>
-                <p className="text-md"><span className="font-bold">Skills Interested In : </span>
+                <p className="text-sm md:text-base"><span className="font-bold">Skills Interested In : </span>
                     {isEditing ?
                         (
                             <input type="text" name="skills"
@@ -84,7 +84,7 @@ function Profile() {
                                 className="border w-full p-1 rounded"
                             />
                         ) : (Array.isArray(userData.skills) ? userData.skills.join(", ") : userData.skills)} </p>
-                <p className="text-md"><span className="font-bold">Short Bio : </span>
+                <p className="text-sm md:text-base"><span className="font-bold">Short Bio : </span>
                     {isEditing ?
                         (
                             <textarea name="bio" value={formData.bio || ""} onChange={handleChange} className="border p-1 rounded w-full" />
@@ -92,8 +92,8 @@ function Profile() {
 
                 {isEditing && (
                     <div className="flex justify-center items-center mt-4 gap-4">
-                        <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={handleSave}> Save </button>
-                        <button className="bg-gray-400 text-white px-4 py-2 rounded" onClick={
+                        <button className="inline-block rounded bg-green-500 px-6 md:px-10 py-1 font-medium text-white shadow-[0_4px_9px_-4px_#10b981] transition duration-150 ease-in-out hover:bg-green-400 hover:shadow-[0_8px_9px_-4px_rgba(16,185,129,0.3),0_4px_18px_0_rgba(16,185,129,0.2)]" onClick={handleSave}> Save </button>
+                        <button className="inline-block rounded bg-gray-400 px-6 md:px-10 py-1 font-medium text-white shadow-[0_4px_9px_-4px_#9ca3af] transition duration-150 ease-in-out hover:bg-gray-300 hover:shadow-[0_8px_9px_-4px_rgba(156,163,175,0.3),0_4px_18px_0_rgba(156,163,175,0.2)]" onClick={
                             () => { setFormData(userData); setIsEditing(false); }
                         }> Cancel </button>
                     </div>
