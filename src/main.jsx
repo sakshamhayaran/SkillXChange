@@ -50,7 +50,7 @@ const router = createBrowserRouter(
           element: <Requests />
         },
         {
-          path: "messges",
+          path: "messages",
           element: <Messages />
         },
         {
