@@ -65,7 +65,7 @@ const router = createBrowserRouter(
     }
   ],
   {
-    basename: '/SkillXChange'
+    basename: '/SkillXChange_with_Firebase'
   }
 );
 
