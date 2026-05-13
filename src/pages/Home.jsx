@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react'
 import { db } from '../Firebase/firebase';
 import UsersCard from '../components/UsersCard';
@@ -14,12 +14,52 @@ function Home() {
 
     useEffect(() => {
         const fetchUsers = async () => {
+            const currentUserId = localStorage.getItem("uid");
+            const currentCollection = role === "learners" ? "learners" : "tutors";
+            const currentUserSnap = await getDocs(query(
+                collection(db, currentCollection),
+                where("__name__", "==", currentUserId)
+            ));
+            const currentUser = currentUserSnap.docs[0].data();
+
+
+
+
             const targetCollection = role === "tutors" ? "learners" : "tutors";
             const querySnapshot = await getDocs(collection(db, targetCollection));
-            const usersList = querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
+            const usersList = querySnapshot.docs.map(doc => {
+
+                const user = {
+                    id: doc.id,
+                    ...doc.data()
+                }
+
+                //AI Recommendation Algorithm
+                let score = 0;
+
+                //1. Location Match
+                if (currentUser.address.toLowerCase() === user.address.toLowerCase()) {
+                    score += 50;
+                }
+
+                //2. Skills Match
+                const currentSkills = Array.isArray(currentUser.skills) ? currentUser.skills : [];
+                const targetSkills = Array.isArray(user.skills) ? user.skills : [];
+
+                currentSkills.forEach((skill) => {
+                    if (targetSkills.includes(skill)) {
+                        score += 30;
+                    }
+                })
+
+                //Attach the score
+                return {
+                    ...user,
+                    recommendationScore : score
+                }
+            });
+
+            usersList.sort((a,b)=> b.recommendationScore-a.recommendationScore);
             setUsers(usersList);
         }
 
@@ -72,7 +112,7 @@ function Home() {
                         const address = user.address?.toLowerCase() || "";
                         const skills = Array.isArray(user.skills) ? user.skills.join(" ").toLowerCase() : (user.skills || "").toLowerCase();
                         return (
-                            name.includes(searchWord)||address.includes(searchWord)||skills.includes(searchWord)
+                            name.includes(searchWord) || address.includes(searchWord) || skills.includes(searchWord)
                         )
                     })
                         .map(user => (

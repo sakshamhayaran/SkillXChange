@@ -80,7 +80,7 @@ function Requests() {
             await updateDoc(doc(db, "requests", request_id), { status: status_msg })
             setRequests((prev) => prev.map((req) => req.id === request_id ? { ...req, status: status_msg } : req))
 
-            if (status_msg === "approved" && learner && tutor) {
+            if (status_msg === +        "approved" && learner && tutor) {
                 await createChat(learner, tutor);
             }
         }

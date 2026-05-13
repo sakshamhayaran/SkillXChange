@@ -25,6 +25,8 @@ function Login_Tutor() {
         await signOut(auth);
         return;
       }
+
+      localStorage.setItem("uid",uid)
       localStorage.setItem("role", "tutors");
       console.log("Logged in:", uid);
       navigate("/dashboard");

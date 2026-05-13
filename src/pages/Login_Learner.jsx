@@ -17,7 +17,6 @@ function Login_Learner() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const uid = userCredential.user.uid;
-
       const learnerRef = doc(db, "learners", uid);
       const learnerSnap = await getDoc(learnerRef);
       if (!learnerSnap.exists()) {
@@ -25,6 +24,8 @@ function Login_Learner() {
         await signOut(auth);
         return;
       }
+
+      localStorage.setItem("uid",uid)
       localStorage.setItem("role", "learners");
       console.log("Logged in:", uid);
       navigate("/dashboard");
